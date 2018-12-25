@@ -1,0 +1,42 @@
+#include "pch.h" 
+#include <iostream> 
+#include <string> 
+#include <vector> 
+using namespace std;
+bool IsPalindrom(const string& s)
+{
+	string word = s;
+	reverse(word.begin(), word.end());
+	return (s == word);
+}
+
+vector<string> PalindromFilter(const vector<string>& words, size_t minLength, size_t maxLenght)
+{
+	vector<string> output;
+
+	for (const auto& word : words) {
+		if (IsPalindrom(word) && word.size() >= minLength && word.size() <= maxLenght) {
+			output.push_back(word);
+		}
+	}
+
+	return output;
+}
+
+int main()
+{
+	vector<string> words = { "alfavitivafla","alfavit","madam","mom",";kuk;",";palindrom" };
+	int minLength = 3;
+	int maxLength = 20;
+	int sh = 0;
+	string a = "";
+	for (string i : PalindromFilter(words, minLength, maxLength)) {
+		sh++;
+		if (sh > 1) { a = ", "; }
+		cout << a << i;
+
+	}
+	return 0;
+}
+
+
